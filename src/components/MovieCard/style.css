@@ -1,5 +1,24 @@
-.movie{
-    height:200px;
-    width:100%;
+.movieCard{
+    height:400px;
+    width:50%;
     align-items: center;
+    overflow: hidden;
+    margin:5px;
+    padding:5px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
+.poster{
+    height:100%;
+
+}
+.poster > img{
+    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+}
+.movieDetails{
+    margin-left: 10px;
+display: flex;
+    flex-direction: column;
+    height:100%;
 }
