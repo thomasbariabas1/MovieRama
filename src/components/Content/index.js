@@ -20,7 +20,7 @@ class Content extends InstanceClass {
 
         const hiddenHeight = contentRootHeight - window.innerHeight;
 
-        const pagination_height = hiddenHeight - 50;
+        const pagination_height = hiddenHeight - 100;
 
         if (scrollHeight > pagination_height && !this.props.loading) {
             this.onScrollFetchMovie()
@@ -33,6 +33,9 @@ class Content extends InstanceClass {
 
         document.getElementById('contentRoot').addEventListener('onunload', () => {
             window.removeEventListener('scroll', this.onScroll)
+        })
+        document.getElementById('scrollToTopButton').addEventListener('click', ()=>{
+            window.scrollTo({top:0})
         })
     }
     #removeEventListeners = () => {
@@ -50,6 +53,7 @@ class Content extends InstanceClass {
         this.#removeEventListeners()
         if (!this.isMounted && !this.props.loading) {
             this.onScrollFetchMovie()
+            this.fetchMovieGenders()
             this.isMounted = true
         }
         if(this.props.page > this.props.totalPages){
@@ -59,12 +63,16 @@ class Content extends InstanceClass {
                  <div id="contentRoot">
                 ${this.props.data.map(movie => {
 
-            const card = new MovieCard(movie)
+            const card = new MovieCard({movie, api_key:this.props.api_key, genres:this.props.genres})
 
             return card.render()
         }).join('')
             }
                 ${this.props.loading?'Loading...':''}
+                <div id="scrollToTopButton"> 
+                <div class="overlay"></div>
+                <i class="arrow up"></i>
+                </div>
                  </div>
           `
 
@@ -79,7 +87,8 @@ const mapStateToProps = (state) => {
         data:state.ContentReducer.data,
         loading:state.ContentReducer.loading,
         totalPages:state.ContentReducer.totalPages,
-        page: state.ContentReducer.page
+        page: state.ContentReducer.page,
+        genres:state.ContentReducer.genres
     }
 }
 
