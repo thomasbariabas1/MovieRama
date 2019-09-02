@@ -1,5 +1,20 @@
 body {
     font-family: Arial, sans-serif;
-    padding: 10px;
     background: #f1f1f1;
+    height: 100%;
+    margin:0;
 }
+#appBar{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 60px;
+    background: #B8C1C8;
+    border-bottom: 1px solid #989EA4;
+    border-top: 1px solid #717D85;
+    color: #FFF;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
