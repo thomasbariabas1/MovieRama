@@ -12,7 +12,7 @@ module.exports = {
         rules: [{
             test: /\.js/,
             exclude: /(node_modules|bower_components)/,
-            use:  {
+            use: {
                 loader: 'babel-loader',
                 options: {
                     presets: ['@babel/preset-env'],
@@ -22,6 +22,14 @@ module.exports = {
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/i,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
             },
         ]
     },
@@ -38,10 +46,10 @@ module.exports = {
         colors: true
     },
     devtool: 'source-map',
-    mode:"development",
+    mode: "development",
     devServer: {
         contentBase: './dist',
-        inline:true,
+        inline: true,
         port: 3000
     }
 };
