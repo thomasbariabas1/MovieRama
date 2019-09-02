@@ -23,9 +23,8 @@ class AppBar extends InstanceClass{
         this.#removeEventListeners()
 
 
-        this.rootElement.innerHTML = `
-        <div class="AppBarRoot">
-        <input id="moviesearch">
+        this.rootElement.innerHTML = `<div class="AppBarContainer">
+        <input id="moviesearch" placeholder="Search Movie">
         </div>
         `
 
