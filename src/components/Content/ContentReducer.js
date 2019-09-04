@@ -42,8 +42,9 @@ const onSearchMovie = (dispatch, getState) => async (searchCriteria) => {
 
     let url = `${baseUrl}/movie/now_playing?page=${1}&&api_key=${api_key}`;
 
-    if(searchCriteria !== '')
-        url = `${baseUrl}/search/movie?page=${1}&&api_key=${api_key}&&query=${searchCriteria}`;
+    const criteria = searchCriteria.trim()
+    if(criteria !== '')
+        url = `${baseUrl}/search/movie?page=${1}&&api_key=${api_key}&&query=${criteria}`;
 
     await fetch(url)
         .then(function (response) {
