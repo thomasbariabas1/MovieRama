@@ -64,10 +64,13 @@ class Content extends InstanceClass {
             scrollTopElement.innerHTML = `
               <div class="overlay"></div>
             <i class="arrow up"></i>`;
+            //Use fragment to add more than one element into dom
+            let fragment = document.createDocumentFragment();
+            fragment.appendChild(resultWrapper)
+            fragment.appendChild(scrollTopElement)
 
             //Append the nodes resultWrapper and scrollToTopElement into the root element
-            this.rootElement.appendChild(resultWrapper);
-            this.rootElement.appendChild(scrollTopElement);
+            this.rootElement.appendChild(fragment);
 
             //Fetch the first data
             this.onScrollFetchMovie();
@@ -99,7 +102,7 @@ class Content extends InstanceClass {
             //Create document fragment sto store temporary the movies then append them to dom
             let fragment = document.createDocumentFragment();
 
-            this.props.data.map(movie => {
+            this.props.data.map((movie, index) => {
                 //Return the container element of the current movie
                 const element = document.getElementsByClassName(`container ${movie.id}`);
                 /*
@@ -111,6 +114,7 @@ class Content extends InstanceClass {
                     //Create a node to act as movie container
                     let container = document.createElement('div');
                     container.setAttribute("class", `container ${movie.id}`);
+                    container.setAttribute("tabindex", `${index+11}`);
                     //Add Child to Fragment
                     fragment.appendChild(container);
                     //Create a new MovieCard class and pass props that will needed into the component.

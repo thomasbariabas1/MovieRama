@@ -75,15 +75,14 @@ class MovieCard extends InstanceClass{
         const extraMovieDetailsElement = document.getElementsByClassName(`expandedDetails ${this.movie.id}`);
         //Toggle the visibility of the div that has the extra details of the movie
         extraMovieDetailsElement[0].classList.toggle('hide');
-
+        //Set the class names into local variable to be used into the re-renders
+        this.className = event.currentTarget.classList;
+        //Set the class names into local variable to be used into the re-renders
+        this.expandedDetailsClassName = extraMovieDetailsElement[0].classList;
         //In Case that list item is expanded
         if (expanded) {
             //Set local variable that is expanded
             this.expanded = true;
-            //Set the class names into local variable to be used into the re-renders
-            this.className = event.currentTarget.classList;
-            //Set the class names into local variable to be used into the re-renders
-            this.expandedDetailsClassName = extraMovieDetailsElement[0].classList;
             //Get the id of the movie
             const movieId = event.currentTarget.getAttribute("data-movieId");
             //Fetch the extra data for the movie
@@ -91,6 +90,8 @@ class MovieCard extends InstanceClass{
         } else {
             this.expanded = false;
             this.details = {}
+            //wait to end the animation before re-render
+            setTimeout(()=>this.render(),300)
         }
     };
 

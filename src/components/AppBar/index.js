@@ -11,8 +11,9 @@ class AppBar extends InstanceClass{
     #setUpEventListeners = () =>{
 
         document.getElementById('moviesearch').addEventListener('input',(e)=>{
+
             const content = document.getElementById('resultsWrapper')
-            while (content.firstChild) {
+            while (content.hasChildNodes()) {
                 content.removeChild(content.firstChild);
             }
             window.scrollTo({top:0})
@@ -34,7 +35,7 @@ class AppBar extends InstanceClass{
         this.rootElement.innerHTML = `<div class="AppBarContainer">
             <div class="logo">MovieRama</div>
             <div class="inputWrapper">
-            <input id="moviesearch" placeholder="Search Movie">
+            <input id="moviesearch" placeholder="Search Movie" tabindex="10">
             <span class="fa fa-search"></span>
             </div>
         </div>
