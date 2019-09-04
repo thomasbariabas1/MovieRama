@@ -69,9 +69,9 @@ const onScrollFetchMovie = (dispatch, getState) => async () => {
     const baseUrl = 'https://api.themoviedb.org/3'
 
     let url = `${baseUrl}/movie/now_playing?page=${page + 1}&&api_key=${api_key}`;
-
-    if(searchCriteria !== '')
-        url = `${baseUrl}/search/movie?page=${page + 1}&&api_key=${api_key}&&query=${searchCriteria}`;
+    const criteria = searchCriteria.trim()
+    if(criteria !== '')
+        url = `${baseUrl}/search/movie?page=${page + 1}&&api_key=${api_key}&&query=${criteria}`;
 
     await fetch(url)
         .then(function (response) {
