@@ -2,17 +2,19 @@ import './style.css'
 import InstanceClass from "../../lib/InstanceClass";
 import {connect} from "../../applicationState/ConnectState";
 import {actions} from "../Content/ContentReducer";
-import InputField from "../InputField";
 
 class AppBar extends InstanceClass{
 
     constructor(){
         super()
-        this.input = new InputField()
     }
     #setUpEventListeners = () =>{
 
         document.getElementById('moviesearch').addEventListener('input',(e)=>{
+            const content = document.getElementById('resultsWrapper')
+            while (content.firstChild) {
+                content.removeChild(content.firstChild);
+            }
             window.scrollTo({top:0})
             this.onSearchMovie(e.target.value)});
 
@@ -30,7 +32,11 @@ class AppBar extends InstanceClass{
 
 
         this.rootElement.innerHTML = `<div class="AppBarContainer">
-            ${this.input.render()}
+            <div class="logo">MovieRama</div>
+            <div class="inputWrapper">
+            <input id="moviesearch" placeholder="Search Movie">
+            <span class="fa fa-search"></span>
+            </div>
         </div>
         `
 

@@ -1,6 +1,37 @@
 .AppBarContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
+}
+.logo{
+    justify-self: flex-start;
+    color:black;
+    background: yellow;
+    height:40px;
+    position:absolute;
+    display:flex;
     align-items: center;
+    padding:5px;
+    left:4%;
+    top:6px;
+    border-radius: 50%;
+}
+.inputWrapper > #moviesearch {
+    height: 30px;
+    margin: 10px;
+    width: 120px;
+    transition: width 300ms ease-in, border-bottom-width 300ms ease-in;
+    padding: 5px 5px 5px 5px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom-width:0;
+    border-radius: 10px;
 }
 
+.inputWrapper > #moviesearch:focus {
+    width: 300px;
+    outline: none;
+    border-bottom-color: cadetblue;
+    border-bottom-width: 2px;
+}
