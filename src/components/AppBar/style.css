@@ -4,22 +4,3 @@
     align-items: center;
 }
 
-#moviesearch {
-    height: 30px;
-    margin: 10px;
-    width: 120px;
-    transition: width 300ms ease-in, border-bottom-width 300ms ease-in;
-    padding: 5px 5px 5px 5px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    border-bottom-width:0;
-    border-radius: 10px;
-}
-
-#moviesearch:focus {
-    width: 200px;
-    outline: none;
-    border-bottom-color: cadetblue;
-    border-bottom-width: 2px;
-}
