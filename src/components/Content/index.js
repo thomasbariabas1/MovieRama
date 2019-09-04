@@ -66,8 +66,8 @@ class Content extends InstanceClass {
             <i class="arrow up"></i>`;
             //Use fragment to add more than one element into dom
             let fragment = document.createDocumentFragment();
-            fragment.appendChild(resultWrapper)
-            fragment.appendChild(scrollTopElement)
+            fragment.appendChild(resultWrapper);
+            fragment.appendChild(scrollTopElement);
 
             //Append the nodes resultWrapper and scrollToTopElement into the root element
             this.rootElement.appendChild(fragment);

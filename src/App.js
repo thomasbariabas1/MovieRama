@@ -22,22 +22,20 @@ class App {
                 <div id="content"></div>
                 <div id="footer"></div>
                 `;
-        const appBarElement = document.getElementById('appBar')
-        const contentElement = document.getElementById('content')
-        const footerElement = document.getElementById('footer')
+        const appBarElement = document.getElementById('appBar');
+        const contentElement = document.getElementById('content');
+        const footerElement = document.getElementById('footer');
 
         //Create instances of each component and link them to each root element
-        this.appBar.createInstance(appBarElement)
-        this.footer.createInstance(footerElement)
-        this.content.createInstance(contentElement)
+        this.appBar.createInstance(appBarElement);
+        this.footer.createInstance(footerElement);
+        this.content.createInstance(contentElement);
 
         //Call each component render function
-        this.appBar.render()
+        this.appBar.render();
         this.content.render()
         // this.footer.render()
     }
-
-
-};
+}
 
 export default App

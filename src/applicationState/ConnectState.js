@@ -10,15 +10,15 @@ export const connect = (mapStateToProps = ()=>({}), dispatchActionCreators = {})
          constructor(props){
              super(props);
 
-             this.props ={}
+             this.props ={};
 
-             this.updateProps()
+             this.updateProps();
              State.setListeners(this.dispatch.bind(this))
 
          }
          updateProps = () =>{
 
-             const oldProps = {...this.props}
+             const oldProps = {...this.props};
 
              const actions = {};
              const newProps = mapStateToProps(State.getState());
@@ -30,16 +30,16 @@ export const connect = (mapStateToProps = ()=>({}), dispatchActionCreators = {})
 
              Object.keys(props).map(key=>{
                  this.props[key] = props[key]
-             })
+             });
              Object.keys(actions).map(key=>{
                  this[key] = actions[key]
-             })
+             });
 
              return !isEquals(oldProps, this.props)
-         }
+         };
 
          dispatch = () =>{
-             const shouldRerender = this.updateProps()
+             const shouldRerender = this.updateProps();
              if(shouldRerender)
              this.render()
          }
