@@ -24,7 +24,7 @@ class Content extends InstanceClass {
         //The height that is not shown into the screen
         const hiddenHeight = contentRootHeight - window.innerHeight;
         //The height that must fetch the new data from the api.
-        const pagination_height = hiddenHeight - 100;
+        const pagination_height = hiddenHeight - 200;
         /*
             In case that user passed the height that is need to fetch data, and is not currently fetching data fetch
             the next page.
