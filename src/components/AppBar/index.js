@@ -2,6 +2,7 @@ import './style.css'
 import InstanceClass from "../../lib/InstanceClass";
 import {connect} from "../../applicationState/ConnectState";
 import {actions} from "../Content/ContentReducer";
+import {debounce} from "../../lib/utils";
 
 class AppBar extends InstanceClass{
 
@@ -10,21 +11,26 @@ class AppBar extends InstanceClass{
     }
     #setUpEventListeners = () =>{
 
-        document.getElementById('moviesearch').addEventListener('input',({target:{value}})=>{
+        document.getElementById('moviesearch').addEventListener('input',this.onDebounceSearch)
+
+    };
+
+    onDebounceSearch = debounce(({target:{value}})=> {
 
             const content = document.getElementById('resultsWrapper');
             while (content.hasChildNodes()) {
                 content.removeChild(content.firstChild);
             }
-            window.scrollTo({top:0});
-            this.onSearchMovie(value)});
+            window.scrollTo({top: 0});
+            this.onSearchMovie(value)
 
-    };
+
+    },600)
 
     #removeEventListeners = () =>{
         const inputElement = document.getElementById('moviesearch');
         if(inputElement){
-            inputElement.removeEventListener('input',this.onSearchMovie)
+            inputElement.removeEventListener('input',debounce(this.onSearchMovie))
 
         }
     };
