@@ -72,11 +72,12 @@ class Content extends InstanceClass {
             //Append the nodes resultWrapper and scrollToTopElement into the root element
             this.rootElement.appendChild(fragment);
 
+            //Fetch the genders list
+            this.fetchMovieGenders();
             //Fetch the first data
             this.onScrollFetchMovie();
 
-            //Fetch the genders list
-            this.fetchMovieGenders();
+
             this.isMounted = true
         }
 
