@@ -1,11 +1,12 @@
-import '../../global/style/card.css'
-import {baseImagesUrl, youtubeEmbedVideo} from "../../lib/constants";
+import {baseImagesUrl} from "../../lib/constants";
 import InstanceClass from "../../lib/InstanceClass";
-import GetMovieVideos from "../../network/GetMovieVideos";
-import GetMovieDetails from "../../network/GetMovieDetails";
-import GetMovieReviews from "../../network/GetMoviewReviews";
-import GetMovieSimilar from "../../network/GetMovieSimilar";
+import GetMovieVideos from "../../network/API/GetMovieVideos";
+import GetMovieDetails from "../../network/API/GetMovieDetails";
+import GetMovieReviews from "../../network/API/GetMoviewReviews";
+import GetMovieSimilar from "../../network/API/GetMovieSimilar";
 import {videoTypes} from "../../lib/enums";
+import '../../global/style/card.css'
+import './movie-card.css'
 
 class MovieCard extends InstanceClass{
 
@@ -39,10 +40,10 @@ class MovieCard extends InstanceClass{
     fetchDetails = async (movieId) => {
 
             const response = await Promise.all([
-                GetMovieDetails(this.api_key, movieId).then(res => res.json()),
-                GetMovieReviews(this.api_key, movieId).then(res => res.json()),
-                GetMovieSimilar(this.api_key, movieId).then(res => res.json()),
-                GetMovieVideos(this.api_key, movieId).then(res => res.json())
+                GetMovieDetails(this.api_key, movieId),
+                GetMovieReviews(this.api_key, movieId),
+                GetMovieSimilar(this.api_key, movieId),
+                GetMovieVideos(this.api_key, movieId)
             ]).then(res => {
                 const details = {};
 
@@ -107,9 +108,20 @@ class MovieCard extends InstanceClass{
             }
         });
 
-        let trailerIframe = '';
+        let trailerKey = '';
         if( this.expanded && this.details.trailer)
-            trailerIframe = youtubeEmbedVideo(this.details.trailer.key);
+            trailerKey = this.details.trailer.key;
+
+        let reviews = []
+        if(this.details.reviews){
+            reviews = this.details.reviews.map(review=>`<div class="review">
+                                                           <div class="review-content">${review.content}</div>
+                                                           <div class="review-author"> "${review.author}"</div>
+                                                         </div>`)
+        }
+        reviews = reviews.length>0?
+            reviews.join("<div class='review-separator'></div>"):
+            'No reviews'
 
         this.#removeEventListeners();
 
@@ -138,13 +150,43 @@ class MovieCard extends InstanceClass{
             </div>
          </div>
             <div class="${this.expandedDetailsClassName}">
-                   <div class="trailer">${trailerIframe}</div>
-                   <span class="reviews"></span>
+                   ${this.details.trailer?`<div class="trailer" data-embed=${trailerKey}> 
+                        <div class="play-button"> </div>
+                   </div>`:''}
+                   <div class="reviews-container">
+                   <span style="font-weight: bold">Reviews:</span>
+                    <div class="reviews">${reviews}</div>
+                    </div>
                    <span class="similar"></span>
             </div>
             </div>
         `);
 
+        if( this.expanded && this.details.trailer) {
+            var trailer = document.querySelectorAll(".trailer");
+            for (var i = 0; i < trailer.length; i++) {
+
+                // thumbnail image source.
+                var source = "https://img.youtube.com/vi/" + trailer[i].dataset.embed + "/sddefault.jpg";
+                // Load the image asynchronously
+                var image = new Image();
+                image.src = source;
+                image.addEventListener("load", function () {
+                    trailer[i].appendChild(image);
+                }(i));
+                trailer[i].addEventListener("click", function (e) {
+                    e.stopPropagation()
+                    var iframe = document.createElement("iframe");
+
+                    iframe.setAttribute("frameborder", "0");
+                    iframe.setAttribute("allowfullscreen", "");
+                    iframe.setAttribute("src", "https://www.youtube.com/embed/" + this.dataset.embed + "?rel=0&showinfo=0&autoplay=1");
+
+                    this.innerHTML = "";
+                    this.appendChild(iframe);
+                });
+            }
+        }
         this.#setUpEventListeners()
     }
 }

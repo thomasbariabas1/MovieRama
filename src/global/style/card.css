@@ -3,8 +3,6 @@
     overflow: hidden;
     margin:5px;
     padding:5px;
-    display: flex;
-    flex-direction: column;
     box-shadow: 0 1px 5px rgba(0,0,0,0.3);
     transition: height 0.3s linear;
 
@@ -28,78 +26,4 @@
     height:500px
 }
 
-.listDetails{
-    cursor: pointer;
-    display: flex;
-    flex-direction: row;
-}
-.poster{
-    display:flex;
-    justify-content: flex-start;
-    height:100%;
-    flex-direction: column;
 
-}
-.poster > img{
-    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
-}
-.details{
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    height:30%;
-    width: 100%;
-
-}
-
-.details:hover .overlay{
-    opacity: 0.1;
-
-}
-
-.title{
-    font-weight: bold;
-}
-.yearOfRelease{
-    font-weight: normal;
-    color: grey;
-}
-.details > span{
-    margin:5px;
-}
-.separator{
-    margin: 0 2px;
-    color: #CCC;
-}
-.overview{
-    font-size: 12px;
-    color: #666666
-}
-.genders{
-    font-size: 13px;
-    color: #666666
-}
-.voteAvg{
-    font-size: 13px;
-    color: #666666
-}
-.expandedDetails{
-    opacity: 1;
-    height:100%;
-    margin-top: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-.expandedDetails.hide{
-    opacity: 0;
-}
-.trailer {
-
-}
-
-.trailer iframe,
-.trailer object,
-.trailer embed {
-    width: 100%;
-}

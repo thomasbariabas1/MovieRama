@@ -1,0 +1,148 @@
+.listDetails{
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+}
+.poster{
+    display:flex;
+    justify-content: flex-start;
+    height:100%;
+    flex-direction: column;
+
+}
+.poster > img{
+    box-shadow: 0 1px 5px rgba(0,0,0,0.5);
+}
+.details{
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    height:30%;
+    width: 100%;
+
+}
+
+.details:hover .overlay{
+    opacity: 0.1;
+
+}
+
+.title{
+    font-weight: bold;
+}
+.yearOfRelease{
+    font-weight: normal;
+    color: grey;
+}
+.details > span{
+    margin:5px;
+}
+.separator{
+    margin: 0 2px;
+    color: #CCC;
+}
+.overview{
+    font-size: 12px;
+    color: #666666
+}
+.genders{
+    font-size: 13px;
+    color: #666666
+}
+.voteAvg{
+    font-size: 13px;
+    color: #666666
+}
+.expandedDetails{
+    opacity: 1;
+    margin-top: 5px;
+    height:78%;
+    display:flex;
+
+}
+.expandedDetails.hide{
+    opacity: 0;
+}
+.trailer {
+    background-color: #000;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 2;
+    height: 100%;
+    width: 40%;
+}
+.trailer img {
+    width: 50%;
+    top: -16.84%;
+    left: 0;
+    opacity: 0.7;
+}
+.trailer .play-button {
+    width: 90px;
+    height: 60px;
+    background-color: #333;
+    box-shadow: 0 0 30px rgba( 0,0,0,0.6 );
+    z-index: 1;
+    opacity: 0.8;
+    border-radius: 6px;
+}
+.trailer .play-button:before {
+    content: "";
+    border-style: solid;
+    border-width: 15px 0 15px 26.0px;
+    border-color: transparent transparent transparent #fff;
+}
+.trailer img,
+.trailer .play-button {
+    cursor: pointer;
+}
+.trailer img,
+.trailer iframe,
+.trailer .play-button,
+.trailer .play-button:before {
+    position: absolute;
+}
+.trailer .play-button,
+.trailer .play-button:before {
+    top: 50%;
+    left: 50%;
+    transform: translate3d( -50%, -50%, 0 );
+}
+.trailer img,
+.trailer iframe {
+    height: 90%;
+    width: 100%;
+    top: 0;
+}
+.reviews-container{
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    width: 30%;
+    height:90%;
+    margin-left: 5px;
+
+}
+.reviews{
+    overflow: scroll;
+    border-top: 1px grey solid;
+
+}
+.review{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+.review-content{
+    font-size: 13px;
+}
+.review-author{
+    font-style: italic;
+    font-size: 11px;
+    margin-left:auto;
+}
+.review-separator{
+    height:1px;
+    background-color: #989EA4;
+}

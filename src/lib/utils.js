@@ -34,4 +34,4 @@ export function debounce(func, wait, immediate) {
     };
 };
 
-export const createAction = (type)=>(payload)=>({type,payload})
+export const createAction = (type)=>(payload)=>({type,payload});

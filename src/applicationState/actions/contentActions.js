@@ -1,5 +1,7 @@
 import {createAction} from "../../lib/utils";
-import {baseUrl} from "../../lib/constants";
+import GetGenders from "../../network/API/GetGenders";
+import GetNowPlaying from "../../network/API/GetNowPlaying";
+import SearchMovie from "../../network/API/SearchMovie";
 
 const constants = {};
 
@@ -24,12 +26,8 @@ const fetchMovieGenders = (dispatch, getState) => async () => {
     const api_key = getState().api_key;
 
     dispatch(onFetchMoviesGenrePending());
-    let url = `${baseUrl}/genre/movie/list?api_key=${api_key}`;
 
-    await fetch(url)
-        .then(function (response) {
-            return response.json();
-        })
+    await GetGenders(api_key)
         .then(function ({genres}) {
             dispatch(onFetchMoviesGenreSuccess(genres))
         }).catch(error => dispatch(onFetchMoviesGenreFailure(error)));
@@ -37,52 +35,44 @@ const fetchMovieGenders = (dispatch, getState) => async () => {
 };
 
 const onSearchMovie = (dispatch, getState) => async (searchCriteria) => {
-    dispatch(onFetchMoviesPending());
-
-    const api_key = getState().api_key;
-
-
-    let url = `${baseUrl}/movie/now_playing?page=${1}&&api_key=${api_key}`;
-
-    const criteria = searchCriteria.trim();
-    if(criteria !== '')
-        url = `${baseUrl}/search/movie?page=${1}&&api_key=${api_key}&&query=${criteria}`;
-
-    await fetch(url)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function ({total_pages, page, results}) {
-            dispatch(onFetchMoviesSuccess({total_pages, page, results:results,searchCriteria}))
-        }).catch(error => dispatch(onFetchMoviesFailure(error)));
-
-
-};
+    try {
+        dispatch(onFetchMoviesPending());
+        const api_key = getState().api_key;
+        let response;
+        const criteria = searchCriteria.trim();
+        if (criteria !== '') {
+            response = await SearchMovie(api_key, 1, criteria)
+        } else {
+            response = await GetNowPlaying(api_key, 1)
+        }
+        const {total_pages, page, results} = response
+        dispatch(onFetchMoviesSuccess({total_pages, page, results: results, searchCriteria}))
+    }catch (e) {
+        dispatch(onFetchMoviesFailure(e))
+    }
+ };
 
 const onScrollFetchMovie = (dispatch, getState) => async () => {
 
-    dispatch(onFetchMoviesPending());
+    try {
+        dispatch(onFetchMoviesPending());
 
-    const page = getState().ContentReducer.page;
-    const api_key = getState().api_key;
-    const searchCriteria = getState().ContentReducer.movieSearchCriteria;
-    const data = getState().ContentReducer.data;
-
-    const baseUrl = 'https://api.themoviedb.org/3';
-
-    let url = `${baseUrl}/movie/now_playing?page=${page + 1}&&api_key=${api_key}`;
-    const criteria = searchCriteria.trim();
-    if(criteria !== '')
-        url = `${baseUrl}/search/movie?page=${page + 1}&&api_key=${api_key}&&query=${criteria}`;
-
-    await fetch(url)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function ({total_pages, page, results}) {
-            dispatch(onFetchMoviesSuccess({total_pages, page, results:[...data, ...results],searchCriteria}))
-        }).catch(error => dispatch(onFetchMoviesFailure(error)));
-
+        const page = getState().ContentReducer.page;
+        const api_key = getState().api_key;
+        const searchCriteria = getState().ContentReducer.movieSearchCriteria;
+        const data = getState().ContentReducer.data;
+        let response;
+        const criteria = searchCriteria.trim();
+        if (criteria !== '') {
+            response = await SearchMovie(api_key, page+1, criteria)
+        } else {
+            response = await GetNowPlaying(api_key, page+1)
+        }
+        const {total_pages,  results} = response
+        dispatch(onFetchMoviesSuccess({total_pages, page:page+1, results: [...data,...results], searchCriteria}))
+    }catch (e) {
+        dispatch(onFetchMoviesFailure(e))
+    }
 };
 
 
