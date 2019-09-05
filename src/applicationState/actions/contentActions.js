@@ -11,6 +11,8 @@ constants.FETCH_MOVIES_GENRE_PENDING = 'content/FETCH_MOVIES_GENRE_PENDING';
 constants.FETCH_MOVIES_GENRE_SUCCESS = 'content/FETCH_MOVIES_GENRE_SUCCESS';
 constants.FETCH_MOVIES_GENRE_FAILURE = 'content/FETCH_MOVIES_GENRE_FAILURE';
 
+export default constants
+
 const onFetchMoviesPending = createAction(constants.FETCH_MOVIES_PENDING);
 const onFetchMoviesSuccess = createAction(constants.FETCH_MOVIES_SUCCESS);
 const onFetchMoviesFailure = createAction(constants.FETCH_MOVIES_FAILURE);
@@ -89,41 +91,3 @@ export const actions = {
     onScrollFetchMovie,
     fetchMovieGenders
 };
-
-const initialState = {
-    movieSearchCriteria: '',
-    data: [],
-    loading: false,
-    error: null,
-    page: 0,
-    totalPages: 0,
-    genres:[]
-};
-const Reducer = (state = initialState, {type, payload}) => {
-    switch (type) {
-        case constants.ON_SEARCH:
-            return {...state, movieSearchCriteria: payload, page: 0};
-        case constants.FETCH_MOVIES_GENRE_PENDING:
-        case constants.FETCH_MOVIES_PENDING:
-            return {...state, loading: true};
-        case constants.FETCH_MOVIES_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                data: payload.results,
-                page: payload.page,
-                totalPages: payload.total_pages,
-                movieSearchCriteria:payload.searchCriteria
-            };
-        case constants.FETCH_MOVIES_GENRE_FAILURE:
-        case constants.FETCH_MOVIES_FAILURE:
-            return {...state, loading: false, error: payload};
-        case constants.FETCH_MOVIES_GENRE_SUCCESS:
-            return {...state, genres: payload};
-        default:
-            return state
-    }
-
-};
-
-export default Reducer
