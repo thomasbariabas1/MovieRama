@@ -1,4 +1,4 @@
-import ContentReducer from '../components/Content/ContentReducer'
+import ContentReducer from './reducers/ContentReducer'
 
 let ApplicationState = null;
 

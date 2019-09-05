@@ -1,7 +1,7 @@
-import './style.css'
+import '../../global/style/app-bar.css'
 import InstanceClass from "../../lib/InstanceClass";
 import {connect} from "../../applicationState/ConnectState";
-import {actions} from "../Content/ContentReducer";
+import {actions} from "../../applicationState/actions/contentActions";
 import {debounce} from "../../lib/utils";
 
 class AppBar extends InstanceClass{

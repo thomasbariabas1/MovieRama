@@ -101,5 +101,5 @@
 .trailer iframe,
 .trailer object,
 .trailer embed {
-width: 100%;
+    width: 100%;
 }

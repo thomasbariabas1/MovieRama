@@ -1,8 +1,8 @@
-import './style.css'
+import '../../global/style/content.css'
 import InstanceClass from "../../lib/InstanceClass";
 import MovieCard from "../MovieCard";
 import {connect} from "../../applicationState/ConnectState";
-import {actions} from "./ContentReducer";
+import {actions} from "../../applicationState/actions/contentActions";
 
 class Content extends InstanceClass {
 

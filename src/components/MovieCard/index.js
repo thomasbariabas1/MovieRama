@@ -1,4 +1,4 @@
-import './style.css'
+import '../../global/style/card.css'
 import {baseImagesUrl, youtubeEmbedVideo} from "../../lib/constants";
 import InstanceClass from "../../lib/InstanceClass";
 import GetMovieVideos from "../../network/GetMovieVideos";

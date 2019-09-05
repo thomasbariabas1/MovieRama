@@ -1,14 +1,12 @@
 import AppBar from './components/AppBar'
-import Footer from "./components/Footer";
-import './App.css'
 import Content from "./components/Content";
+import './App.css'
 
 
 class App {
 
     constructor(rootElement) {
         this.rootElement = rootElement;
-        this.footer = new Footer();
         this.appBar = new AppBar();
         this.content = new Content()
 
@@ -20,21 +18,17 @@ class App {
         this.rootElement.innerHTML = `
                 <div id="appBar"></div>
                 <div id="content"></div>
-                <div id="footer"></div>
                 `;
         const appBarElement = document.getElementById('appBar');
         const contentElement = document.getElementById('content');
-        const footerElement = document.getElementById('footer');
 
         //Create instances of each component and link them to each root element
         this.appBar.createInstance(appBarElement);
-        this.footer.createInstance(footerElement);
         this.content.createInstance(contentElement);
 
         //Call each component render function
         this.appBar.render();
         this.content.render()
-        // this.footer.render()
     }
 }
 
