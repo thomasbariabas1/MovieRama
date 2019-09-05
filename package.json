@@ -43,7 +43,7 @@
     "style-loader": "^1.0.0"
   },
   "jest": {
-    "testPathIgnorePatterns" : [
+    "testPathIgnorePatterns": [
       "<rootDir>/cypress"
     ]
   }
