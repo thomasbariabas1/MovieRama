@@ -166,11 +166,14 @@ class MovieCard extends InstanceClass{
                    ${this.details.trailer?`<div class="trailer" data-embed=${trailerKey}> 
                         <div class="play-button"> </div>
                    </div>`:''}
-                   <div class="reviews-container">
-                   <span style="font-weight: bold">Reviews:</span>
+                   <div class="details-container">
+                   <span class="details-title">Reviews:</span>
                     <div class="reviews">${reviews}</div>
                     </div>
+                   <div class="details-container">
+                   <div class="details-title">Similar Movies:</div>
                    <span class="similar-movies">${similar}</span>
+                   </div>
             </div>
             </div>
         `);

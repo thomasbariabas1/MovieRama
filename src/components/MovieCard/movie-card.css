@@ -114,7 +114,7 @@
     width: 100%;
     top: 0;
 }
-.reviews-container{
+.details-container{
     display: flex;
     flex-direction: column;
     padding: 4px;
@@ -125,9 +125,9 @@
 }
 .reviews{
     overflow: auto;
-    border-top: 1px grey solid;
 
 }
+
 .review{
     display: flex;
     flex-direction: column;
@@ -150,7 +150,7 @@
     flex-wrap: wrap;
     height: 90%;
     overflow: auto;
-    width:30%;
+
 }
 .similar-movie{
     flex: 1 0 25%; /* explanation below */
@@ -162,4 +162,8 @@
 }
 .similar-movie:hover img{
     border:orange 2px solid;
+}
+.details-title{
+    font-weight: bold;
+    border-bottom: #CCC 1px solid;
 }
