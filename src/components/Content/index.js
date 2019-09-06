@@ -37,7 +37,7 @@ class Content extends InstanceClass {
 
     #setUpEventListeners = () => {
         //Add Listener to button scrollTopButton, that scroll window to the top
-        document.getElementById('scrollToTopButton').addEventListener('click', () => {
+        document.getElementById('scroll-top').addEventListener('click', () => {
             window.scrollTo({top: 0})
         })
 
@@ -45,7 +45,7 @@ class Content extends InstanceClass {
 
     #removeEventListeners = () => {
         //Remove Listener to button scrollTopButton, that scroll window to the top
-        document.getElementById('scrollToTopButton').removeEventListener('click', () => {
+        document.getElementById('scroll-top').removeEventListener('click', () => {
             window.scrollTo({top: 0})
         })
 
@@ -57,10 +57,10 @@ class Content extends InstanceClass {
         if (!this.isMounted && !this.props.loading) {
             //Add a node to render the movies results
             let resultWrapper = document.createElement('div');
-            resultWrapper.setAttribute("id", `resultsWrapper`);
+            resultWrapper.setAttribute("id", `results-container`);
             //Add a node to render the scroll to top button
             let scrollTopElement = document.createElement('div');
-            scrollTopElement.setAttribute('id', 'scrollToTopButton');
+            scrollTopElement.setAttribute('id', 'scroll-top');
             scrollTopElement.innerHTML = `
               <div class="overlay"></div>
             <i class="arrow up"></i>`;
@@ -92,7 +92,7 @@ class Content extends InstanceClass {
         if ((this.props.page < this.props.totalPages) && !this.hasScrollEventListener) {
             window.addEventListener('scroll', this.onScroll)
         }
-        const resultsRootElement = document.getElementById('resultsWrapper');
+        const resultsRootElement = document.getElementById('results-container');
 
         //In case of the data has been fetched from api, the loading is false, append the data and set up the listeners
         if (!this.props.loading) {

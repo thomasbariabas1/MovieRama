@@ -16,10 +16,10 @@ class App {
 
         // define html
         this.rootElement.innerHTML = `
-                <div id="appBar"></div>
+                <div id="app-bar"></div>
                 <div id="content"></div>
                 `;
-        const appBarElement = document.getElementById('appBar');
+        const appBarElement = document.getElementById('app-bar');
         const contentElement = document.getElementById('content');
 
         //Create instances of each component and link them to each root element

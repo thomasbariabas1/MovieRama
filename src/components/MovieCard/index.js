@@ -1,4 +1,4 @@
-import {baseImagesUrl} from "../../lib/constants";
+import {baseImagesUrl, baseVideoUrl} from "../../lib/constants";
 import InstanceClass from "../../lib/InstanceClass";
 import GetMovieVideos from "../../network/API/GetMovieVideos";
 import GetMovieDetails from "../../network/API/GetMovieDetails";
@@ -106,6 +106,7 @@ class MovieCard extends InstanceClass{
         const yearOfRelease = new Date(release_date).getFullYear();
 
         let genreName = [];
+        //set the names of the gender from the gender ids that are on the movie
         this.genres.map(genre => {
             if (genre_ids.indexOf(genre.id) > -1) {
                 genreName.push(genre.name)
@@ -118,23 +119,32 @@ class MovieCard extends InstanceClass{
 
         let reviews = []
         if(this.details.reviews){
+            //Create the reviews view from data
             reviews = this.details.reviews.map(review=>`<div class="review">
                                                            <div class="review-content">${review.content}</div>
                                                            <div class="review-author"> "${review.author}"</div>
                                                          </div>`)
         }
+        //Check if there are any reviews
         reviews = reviews.length>0?
             reviews.join("<div class='review-separator'></div>"):
             'No reviews'
 
         let similar = []
+
         if(this.details.similar){
+            //Create the similar movies view from data
             similar = this.details.similar.map(similarMovie=>{
                 return`<div class="similar-movie" title="${similarMovie.title}">
-                        <img   alt=${similarMovie.title} src=${baseImagesUrl + similarMovie.poster_path + '?api_key=' + this.api_key}>
+                         <img   alt=${similarMovie.title} 
+                                src=${baseImagesUrl + similarMovie.poster_path + '?api_key=' + this.api_key}>
                         </div>`
             }).join('')
         }
+        //Check if there are any similar movies
+        similar = similar.length>0?
+            similar:
+            'No similar movies found';
 
         this.#removeEventListeners();
 
@@ -179,24 +189,26 @@ class MovieCard extends InstanceClass{
         `);
 
         if( this.expanded && this.details.trailer) {
-            var trailer = document.querySelectorAll(".trailer");
-            for (var i = 0; i < trailer.length; i++) {
+            let trailer = document.querySelectorAll(".trailer");
+            for (let i = 0; i < trailer.length; i++) {
 
                 // thumbnail image source.
-                var source = "https://img.youtube.com/vi/" + trailer[i].dataset.embed + "/sddefault.jpg";
+                let source = "https://img.youtube.com/vi/" + trailer[i].dataset.embed + "/sddefault.jpg";
                 // Load the image asynchronously
-                var image = new Image();
+                let image = new Image();
                 image.src = source;
                 image.addEventListener("load", function () {
                     trailer[i].appendChild(image);
                 }(i));
                 trailer[i].addEventListener("click", function (e) {
                     e.stopPropagation()
-                    var iframe = document.createElement("iframe");
+                    let iframe = document.createElement("iframe");
+
+                    const videoUrl = baseVideoUrl + this.dataset.embed + "?rel=0&showinfo=0&autoplay=1";
 
                     iframe.setAttribute("frameborder", "0");
                     iframe.setAttribute("allowfullscreen", "");
-                    iframe.setAttribute("src", "https://www.youtube.com/embed/" + this.dataset.embed + "?rel=0&showinfo=0&autoplay=1");
+                    iframe.setAttribute("src", videoUrl);
 
                     this.innerHTML = "";
                     this.appendChild(iframe);

@@ -11,13 +11,13 @@ class AppBar extends InstanceClass{
     }
     #setUpEventListeners = () =>{
 
-        document.getElementById('moviesearch').addEventListener('input',this.onDebounceSearch)
+        document.getElementById('movie-search').addEventListener('input',this.onDebounceSearch)
 
     };
 
     onDebounceSearch = debounce(({target:{value}})=> {
 
-            const content = document.getElementById('resultsWrapper');
+            const content = document.getElementById('results-container');
             while (content.hasChildNodes()) {
                 content.removeChild(content.firstChild);
             }
@@ -33,7 +33,7 @@ class AppBar extends InstanceClass{
     },600)
 
     #removeEventListeners = () =>{
-        const inputElement = document.getElementById('moviesearch');
+        const inputElement = document.getElementById('movie-search');
         if(inputElement){
             inputElement.removeEventListener('input',this.onDebounceSearch)
 
@@ -44,10 +44,10 @@ class AppBar extends InstanceClass{
         this.#removeEventListeners();
 
 
-        this.rootElement.innerHTML = `<div class="AppBarContainer">
+        this.rootElement.innerHTML = `<div class="app-bar-container">
             <div class="logo">MovieRama</div>
-            <div class="inputWrapper">
-            <input id="moviesearch" placeholder="Search Movie" tabindex="10">
+            <div class="input-wrapper">
+            <input id="movie-search" placeholder="Search Movie" tabindex="10">
             <span class="fa fa-search"></span>
             </div>
         </div>

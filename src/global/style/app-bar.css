@@ -1,4 +1,4 @@
-.AppBarContainer {
+.app-bar-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -16,7 +16,7 @@
     top:6px;
     border-radius: 50%;
 }
-.inputWrapper > #moviesearch {
+.input-wrapper > #movie-search {
     height: 30px;
     margin: 10px;
     width: 120px;
@@ -29,7 +29,7 @@
     border-radius: 10px;
 }
 
-.inputWrapper > #moviesearch:focus {
+.input-wrapper > #movie-search:focus {
     width: 300px;
     outline: none;
     border-bottom-color: cadetblue;
