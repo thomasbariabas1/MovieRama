@@ -6,8 +6,6 @@ for a specific movie and viewing its details.
 
 ## Table of contents
 
-Use for instance <https://github.com/ekalinin/github-markdown-toc>:
-
 > * [MovieRama](#MovieRama)
 >   * [Requirements](#Requirements)
 >   * [Installation](#installation)
