@@ -92,14 +92,18 @@ class Content extends InstanceClass {
         if ((this.props.page < this.props.totalPages) && !this.hasScrollEventListener) {
             window.addEventListener('scroll', this.onScroll)
         }
+        const resultsRootElement = document.getElementById('resultsWrapper');
 
         //In case of the data has been fetched from api, the loading is false, append the data and set up the listeners
         if (!this.props.loading) {
+            //Remove Loading component
+            let element = document.getElementById('loading-component');
+            if(element)
+            element.parentNode.removeChild(element);
 
             //Remove the existing listeners
             this.#removeEventListeners();
             //Find the element that hosts the results of the search
-            const resultsRootElement = document.getElementById('resultsWrapper');
             //Create document fragment sto store temporary the movies then append them to dom
             let fragment = document.createDocumentFragment();
 
@@ -133,6 +137,15 @@ class Content extends InstanceClass {
             //Set up event listeners to the needed components
             this.#setUpEventListeners()
 
+        }else{
+            //Remove Loading component
+            let element = document.getElementById('loading-component');
+            if(!element) {
+                const loading = document.createElement('div')
+                loading.setAttribute('id', 'loading-component')
+                loading.innerHTML = 'Loading...'
+                resultsRootElement.appendChild(loading)
+            }
         }
     }
 }

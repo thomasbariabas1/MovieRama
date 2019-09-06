@@ -53,9 +53,13 @@ class MovieCard extends InstanceClass{
                 if(reviews.length>2){
                     reviews = [reviews[0],reviews[1]]
                 }
+                let similar = res[2].results
+                if(similar.length>7){
+                    similar = similar.splice(0,6)
+                }
                 details['details'] = res[0];
                 details['reviews'] = reviews;
-                details['similar'] = res[2];
+                details['similar'] = similar;
                 details['trailer'] = trailer.length>0?trailer[0]:null;
 
                 return details
@@ -123,12 +127,21 @@ class MovieCard extends InstanceClass{
             reviews.join("<div class='review-separator'></div>"):
             'No reviews'
 
+        let similar = []
+        if(this.details.similar){
+            similar = this.details.similar.map(similarMovie=>{
+                return`<div class="similar-movie" title="${similarMovie.title}">
+                        <img   alt=${similarMovie.title} src=${baseImagesUrl + similarMovie.poster_path + '?api_key=' + this.api_key}>
+                        </div>`
+            }).join('')
+        }
+
         this.#removeEventListeners();
 
         this.rootElement.innerHTML = (`<div class="${this.className}" data-movieId = ${this.movie.id}>
             <div class="listDetails">
             <div class="poster">
-                <img src=${baseImagesUrl + poster_path + '?api_key=' + this.api_key}
+                <img  src=${baseImagesUrl + poster_path + '?api_key=' + this.api_key}
                      alt=${title}>
             </div>
             <div class="details">
@@ -157,7 +170,7 @@ class MovieCard extends InstanceClass{
                    <span style="font-weight: bold">Reviews:</span>
                     <div class="reviews">${reviews}</div>
                     </div>
-                   <span class="similar"></span>
+                   <span class="similar-movies">${similar}</span>
             </div>
             </div>
         `);

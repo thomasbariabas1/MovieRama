@@ -68,7 +68,6 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    z-index: 2;
     height: 100%;
     width: 40%;
 }
@@ -125,7 +124,7 @@
 
 }
 .reviews{
-    overflow: scroll;
+    overflow: auto;
     border-top: 1px grey solid;
 
 }
@@ -145,4 +144,22 @@
 .review-separator{
     height:1px;
     background-color: #989EA4;
+}
+.similar-movies{
+    display: flex;
+    flex-wrap: wrap;
+    height: 90%;
+    overflow: auto;
+    width:30%;
+}
+.similar-movie{
+    flex: 1 0 25%; /* explanation below */
+    margin: 5px;
+}
+.similar-movie img{
+    border:black 2px solid;
+
+}
+.similar-movie:hover img{
+    border:orange 2px solid;
 }

@@ -21,6 +21,11 @@ class AppBar extends InstanceClass{
             while (content.hasChildNodes()) {
                 content.removeChild(content.firstChild);
             }
+            const loading = document.createElement('div')
+            loading.setAttribute('id','loading-component')
+            loading.innerHTML = 'Loading...'
+            content.appendChild(loading)
+
             window.scrollTo({top: 0});
             this.onSearchMovie(value)
 
@@ -30,7 +35,7 @@ class AppBar extends InstanceClass{
     #removeEventListeners = () =>{
         const inputElement = document.getElementById('moviesearch');
         if(inputElement){
-            inputElement.removeEventListener('input',debounce(this.onSearchMovie))
+            inputElement.removeEventListener('input',this.onDebounceSearch)
 
         }
     };
