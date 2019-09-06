@@ -48,14 +48,14 @@ When the user expand the details of a movie:
 
 The application uses [cypress](https://www.cypress.io/) for end-to-end test and [jest](https://jestjs.io/) for unit test.
 
-###Cypress
+### Cypress
 To run the end-to-end tests, run into the console `npm run cypress` and on the cypress panel select the `movie_rama.spec.js`
 and it will run the test automatically. 
 > *The application must be running for the tests to begin.*
 
 ![cypress_test](./screenshots/cypress_test.png)
 
-###Jest
+### Jest
 To run the unit tests, run into console `npm run test`.
 
 ## Build
