@@ -1,3 +1,4 @@
+//Function that check the equality of two object
 export const isEquals = (compare1, compare2) =>{
 
     if(typeof compare1 !=='object' || typeof compare2 !=='object'){
@@ -17,8 +18,9 @@ export const isEquals = (compare1, compare2) =>{
     });
 
     return areEquals;
-}
+};
 
+//Debounce function
 export function debounce(func, wait, immediate) {
     let timeout;
     return function() {
