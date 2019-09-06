@@ -17,7 +17,7 @@ for a specific movie and viewing its details.
 >   * [Build](#build)
 >    
 
-##Requirements
+## Requirements
 To run this application locally, you must have installed into you machine [node.js](https://nodejs.org/en/).
 
 ## Installation
