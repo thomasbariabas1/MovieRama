@@ -18,13 +18,13 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.2.3",
     "@babel/register": "^7.0.0",
-    "babel-loader": "^8.0.5",
-    "file-loader": "^4.2.0",
-    "html-webpack-plugin": "^3.2.0",
+    "babel-loader": "^8.3.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "jest": "^24.9.0",
     "script-ext-html-webpack-plugin": "^2.1.3",
-    "webpack": "^4.28.4",
-    "webpack-cli": "^3.2.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^3.1.14"
   },
   "babel": {
@@ -38,9 +38,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.5.5",
-    "css-loader": "^3.2.0",
+    "css-loader": "^6.7.3",
     "cypress": "^3.4.1",
-    "style-loader": "^1.0.0"
+    "style-loader": "^1.3.0"
   },
   "jest": {
     "testPathIgnorePatterns": [
